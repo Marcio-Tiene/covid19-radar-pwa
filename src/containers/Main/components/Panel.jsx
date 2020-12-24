@@ -3,7 +3,11 @@ import { Card, Typography, Button } from '../../../components';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { countries } from '../../../commons/constants/countries';
-import { CardPanelContentStyled, TypografyContainer } from './style';
+import {
+  CardPanelContentStyled,
+  TypografyContainer,
+  SelectorContainer,
+} from './style';
 
 const navigatorHasShare = navigator.share;
 
@@ -20,7 +24,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
     navigator.share({
       title: `Dados do Covid19 - ${country}`,
       text: textCovid19,
-      url: 'https://covid19dio.netlify.app/',
+      url: 'https://covid19-radar.vercel.app/',
     });
   };
 
@@ -44,35 +48,59 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
     <Card>
       <CardPanelContentStyled>
         <TypografyContainer>
-          <Typography variant='h5' component='span' color='primary'>
+          <Typography
+            variant='h5'
+            component='span'
+            color='primary'
+            style={{ maxWidth: 'fit-content' }}
+          >
             COVID19
           </Typography>
-          <Typography variant='h6' component='span' color='primary'>
+          <Typography
+            variant='h6'
+            component='span'
+            color='primary'
+            style={{ maxWidth: '50%' }}
+          >
             Painel Coronavírus
           </Typography>
-          <Typography variant='body2' component='span' color='primary'>
+          <Typography
+            variant='body2'
+            component='span'
+            color='primary'
+            style={{ maxWidth: 'fit-content' }}
+          >
             Atualizado em: {updateAt}
           </Typography>
-          <div className='pt-2'>
-            {/* <Select onChange={onChange} value={country}>
+        </TypografyContainer>
+
+        {navigatorHasShare ? renderShareButton : renderCopyButton}
+      </CardPanelContentStyled>
+      <SelectorContainer>
+        {/* <div className='pt-2'> */}
+        {/* <Select onChange={onChange} value={country}>
               {countries.map(renderCountries)}
             </Select> */}
 
-            <Autocomplete
-              onChange={onChange}
-              value={country}
-              options={countries}
-              getOptionSelected={(option) => option.label}
-              getOptionLabel={(option) => option.label}
-              style={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField {...params} label='Escolha o país' />
-              )}
+        <Autocomplete
+          color='primary'
+          onChange={onChange}
+          value={country}
+          options={countries}
+          getOptionSelected={(option) => option.label}
+          getOptionLabel={(option) => option.label}
+          style={{ width: '100%' }}
+          renderInput={(params) => (
+            <TextField
+              color='primary'
+              {...params}
+              label='Escolha o país'
+              style={{ maxWidth: 300 }}
             />
-          </div>
-        </TypografyContainer>
-        {navigatorHasShare ? renderShareButton : renderCopyButton}
-      </CardPanelContentStyled>
+          )}
+        />
+        {/* </div> */}
+      </SelectorContainer>
     </Card>
   );
 }

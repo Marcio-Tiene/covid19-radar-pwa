@@ -32,3 +32,7 @@ export const ItemStyled = styled.div`
   justify-content: space-between;
   min-width: 150px;
 `;
+
+export const SelectorContainer = styled.div`
+  padding: 0px 25px 25px;
+`;
