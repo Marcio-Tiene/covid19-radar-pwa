@@ -7,7 +7,11 @@ import { ContainerStyled } from './style';
 
 function Main() {
   const [data, setData] = useState({});
-  const [country, setCountry] = useState('brazil');
+  const [country, setCountry] = useState({
+    id: 33,
+    label: 'BRASIL',
+    value: 'BRAZIL',
+  });
   const updateAt = new Date().toLocaleString();
 
   const getCovidData = useCallback((country) => {
@@ -15,16 +19,20 @@ function Main() {
   }, []);
 
   useEffect(() => {
-    getCovidData(country);
+    getCovidData(country.value.toLowerCase());
   }, [getCovidData, country]);
 
   const handleChange = (event) => {
-    const countryOnLabel = event.target.innerHTML;
-    const country =
-      countries.find((country) => country.label === countryOnLabel) || 'a';
+    const country = event.target.innerHTML;
+    const countrySearch = countries.find(
+      (countrySearch) => countrySearch.label === country
+    ) || {
+      id: 0,
+      label: '',
+      value: 'world',
+    };
 
-    console.log(event.target.innerHTML);
-    setCountry((country.value || 'a').toLowerCase());
+    setCountry(countrySearch);
   };
 
   return (

@@ -1,33 +1,14 @@
 import React, { memo } from 'react';
-import {
-  Card,
-  Typography,
-  Button,
-  Select,
-  MenuItem,
-} from '../../../components';
+import { Card, Typography, Button } from '../../../components';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { countries } from '../../../commons/constants/countries';
-import {
-  CardPanelContentStyled,
-  ItemStyled,
-  TypografyContainer,
-} from './style';
+import { CardPanelContentStyled, TypografyContainer } from './style';
 
 const navigatorHasShare = navigator.share;
 
 function Panel({ updateAt, onChange, data, country, getCoviddata }) {
   const { cases, recovered, deaths, todayCases, todayDeaths } = data;
-  console.log(data);
-
-  // const renderCountries = (country, index) => (
-  //   <MenuItem key={`country-${index}`} value={country.value.toLowerCase()}>
-  //     <ItemStyled>
-  //       <div>{country.label}</div>
-  //     </ItemStyled>
-  //   </MenuItem>
-  // );
 
   const textCovid19 = `País: ${country} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered} -`;
 
@@ -79,7 +60,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
 
             <Autocomplete
               onChange={onChange}
-              value={country.label}
+              value={country}
               options={countries}
               getOptionSelected={(option) => option.label}
               getOptionLabel={(option) => option.label}

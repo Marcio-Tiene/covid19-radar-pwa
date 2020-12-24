@@ -31,6 +31,15 @@ const COUNTRIES = [
     flag: ItalyFlag,
   },
 ];
+
+export const NO_DATA = {
+  cases: 'Sem dados na API',
+  todayDeaths: 0,
+  recovered: 0,
+  deaths: 0,
+  todayCases: 0,
+};
+
 export const countries = [
   { id: 1, label: 'AFEGANISTÃO', value: 'AFGHANISTAN' },
   { id: 2, label: 'ACROTÍRI E DECELIA', value: 'AKROTIRI E DEKÉLIA' },
