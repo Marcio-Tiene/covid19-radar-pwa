@@ -11,10 +11,10 @@ import {
 
 const navigatorHasShare = navigator.share;
 
-function Panel({ updateAt, onChange, data, country, getCoviddata }) {
+function Panel({ updateAt, onChange, data, country }) {
   const { cases, recovered, deaths, todayCases, todayDeaths } = data;
 
-  const textCovid19 = `País: ${country} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered} -`;
+  const textCovid19 = `País: ${country.label} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered} `;
 
   const copyInfo = () => {
     navigator.clipboard.writeText(textCovid19);
@@ -52,7 +52,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
             variant='h5'
             component='span'
             color='primary'
-            style={{ maxWidth: 'fit-content' }}
+            // style={{ maxWidth: 'fit-content' }}
           >
             COVID19
           </Typography>
@@ -60,7 +60,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
             variant='h6'
             component='span'
             color='primary'
-            style={{ maxWidth: '50%' }}
+            // style={{ maxWidth: '50%' }}
           >
             Painel Coronavírus
           </Typography>
@@ -68,7 +68,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
             variant='body2'
             component='span'
             color='primary'
-            style={{ maxWidth: 'fit-content' }}
+            // style={{ maxWidth: 'fit-content' }}
           >
             Atualizado em: {updateAt}
           </Typography>
