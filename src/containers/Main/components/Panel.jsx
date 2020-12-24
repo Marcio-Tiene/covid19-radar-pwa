@@ -1,28 +1,14 @@
 import React, { memo } from 'react';
-import RefreshIcon from '../../../assets/images/refresh.svg';
-import {
-  Card,
-  Typography,
-  Button,
-  Select,
-  MenuItem,
-} from '../../../components';
-import COUNTRIES from '../../../commons/constants/countries';
-import { CardPanelContentStyled, ItemStyled } from './style';
+import { Card, Typography, Button } from '../../../components';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+import { countries } from '../../../commons/constants/countries';
+import { CardPanelContentStyled, TypografyContainer } from './style';
 
 const navigatorHasShare = navigator.share;
 
 function Panel({ updateAt, onChange, data, country, getCoviddata }) {
   const { cases, recovered, deaths, todayCases, todayDeaths } = data;
-
-  const renderCountries = (country, index) => (
-    <MenuItem key={`country-${index}`} value={country.value}>
-      <ItemStyled>
-        <div>{country.label}</div>
-        <img src={country.flag} alt={`País-${country.label}`} />
-      </ItemStyled>
-    </MenuItem>
-  );
 
   const textCovid19 = `País: ${country} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered} -`;
 
@@ -57,7 +43,7 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
   return (
     <Card>
       <CardPanelContentStyled>
-        <div>
+        <TypografyContainer>
           <Typography variant='h5' component='span' color='primary'>
             COVID19
           </Typography>
@@ -68,11 +54,23 @@ function Panel({ updateAt, onChange, data, country, getCoviddata }) {
             Atualizado em: {updateAt}
           </Typography>
           <div className='pt-2'>
-            <Select onChange={onChange} value={country}>
-              {COUNTRIES.map(renderCountries)}
-            </Select>
+            {/* <Select onChange={onChange} value={country}>
+              {countries.map(renderCountries)}
+            </Select> */}
+
+            <Autocomplete
+              onChange={onChange}
+              value={country}
+              options={countries}
+              getOptionSelected={(option) => option.label}
+              getOptionLabel={(option) => option.label}
+              style={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label='Escolha o país' />
+              )}
+            />
           </div>
-        </div>
+        </TypografyContainer>
         {navigatorHasShare ? renderShareButton : renderCopyButton}
       </CardPanelContentStyled>
     </Card>
