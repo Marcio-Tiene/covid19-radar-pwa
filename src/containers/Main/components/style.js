@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CardContent, Typography } from '../../../components';
 
 export const LabelStyled = styled(Typography)`
@@ -9,6 +9,12 @@ export const LabelStyled = styled(Typography)`
 export const ValueStyled = styled(Typography)`
   font-weight: 400;
   font-size: 2.5rem;
+  ${(p) =>
+    isNaN(Number(p.children)) &&
+    css`
+      font-size: 1rem;
+      line-height: 3.75rem;
+    `}
 `;
 
 export const CardContentStyled = styled(CardContent)`
