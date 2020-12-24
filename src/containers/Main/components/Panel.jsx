@@ -14,7 +14,7 @@ const navigatorHasShare = navigator.share;
 function Panel({ updateAt, onChange, data, country }) {
   const { cases, recovered, deaths, todayCases, todayDeaths } = data;
 
-  const textCovid19 = `País: ${country.label} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered} `;
+  const textCovid19 = `País: ${country.label} - casos hoje: ${todayCases} - mortes hoje: ${todayDeaths} - casos: ${cases} - mortes: ${deaths} -   recuperados: ${recovered}`;
 
   const copyInfo = () => {
     navigator.clipboard.writeText(textCovid19);
